@@ -51,6 +51,19 @@ class Board {
     {
       board.clear();
     }
+
+    bool isEmpty(std::pair<int,int> location){
+        int row = location.first;
+        int col = location.second;
+        if(row >= board.size() || col >= board[0].size() ||row < 0 || col < 0){
+          throw std::invalid_argument("Bad location");
+        }
+        Soldier* tmp = this->board[row][col];
+        if (tmp == nullptr)return true;
+        throw std::invalid_argument("place is taken");
+    }
+
+    void attack(std::pair<int, int> loc, Soldier* soldier);
 };
 
 }
