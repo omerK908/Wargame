@@ -13,10 +13,10 @@ class FootCommander : public FootSoldier
 public:
     FootCommander(int team) : FootSoldier(FC_HP, FC_DPA, team, true){};
     ~FootCommander(){};
-    
+
     void specialAttack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
-        std::cout << "FootCommander att" << std::endl;
+        std::cout << "--->FootCommander Attack<--- " << std::endl;
         attack(board, source);
     }
     void heal() override

@@ -14,6 +14,9 @@
 #include <stdint.h>
 #include "Soldier.hpp"
 
+#ifndef uint
+#define uint unsigned int
+#endif
 namespace WarGame
 {
 

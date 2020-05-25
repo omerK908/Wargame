@@ -13,29 +13,32 @@ class FootSoldier : public Soldier
 {
 public:
     FootSoldier(int team) : Soldier(FS_HP, FS_DPA, team, false){};
-    FootSoldier(int hp, int dpa, int team, bool isCommander) : Soldier(hp, dpa, team, isCommander){}
+    FootSoldier(int hp, int dpa, int team, bool isCommander) : Soldier(hp, dpa, team, isCommander) {}
     ~FootSoldier(){};
     void attack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
         std::pair<int, int> enemyPos = findClosestEnemy(board, source);
-        if(enemyPos.first < 0 || enemyPos.second < 0 || enemyPos.first >= board.size() || enemyPos.second >= board[0].size() ){
-            std::cout << "enemeyPos error\n";
+        if (enemyPos.first < 0 || enemyPos.second < 0 || enemyPos.first >= board.size() || enemyPos.second >= board[0].size())
+        {
+            std::cout << "Enemy Position :  error \n " << std::endl;
             return;
         }
         std::cout << enemyPos.first << " " << enemyPos.second << std::endl;
         Soldier *enemy = board[enemyPos.first][enemyPos.second];
         enemy->_hp -= _dpa;
-        std::cout << "dpa is: " << _dpa << std::endl;
+        std::cout << "DPA Is :  " << _dpa << std::endl;
+        std::cout << "\n"
+                  << std::endl;
         if (enemy->_hp <= 0)
         {
             delete enemy;
             board[enemyPos.first][enemyPos.second] = nullptr;
-            std::cout << "died" << std::endl;
+            std::cout << " ---RIP---" << std::endl;
         }
     }
     void specialAttack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
-        std::cout << "FootSoldier att" << std::endl;
+        std::cout << "--->Foot Soldier Attack<---" << std::endl;
         attack(board, source);
     }
     void heal() override
@@ -44,7 +47,7 @@ public:
     std::pair<int, int> findClosestEnemy(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source)
     {
         std::pair<int, int> ans = {-1, -1};
-        std::cout << "findClosestEnemy" << std::endl;
+        std::cout << "The nearest enemy at position: " << std::endl;
         double distance = board.size() * board.size();
         for (int i = 0; i < board.size(); i++)
         {
@@ -68,13 +71,6 @@ public:
     }
     double distanceFunc(std::pair<int, int> source, std::pair<int, int> end)
     {
-        
-
-        // double distance = std::hypot(source.first-end.first, source.second-end.second);
-        // return distance;
-
-        
-
 
         int x1, x2, y1, y2;
         x1 = source.first;
@@ -84,5 +80,4 @@ public:
         return sqrt(pow(x2 - x1, 2) +
                     pow(y2 - y1, 2) * 1.0);
     }
-    
 };
