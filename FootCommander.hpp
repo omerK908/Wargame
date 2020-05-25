@@ -21,5 +21,6 @@ public:
     }
     void heal() override
     {
+        _hp = FC_HP;
     }
 };

@@ -43,6 +43,7 @@ public:
     }
     void heal() override
     {
+        _hp = FS_HP;
     }
     std::pair<int, int> findClosestEnemy(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source)
     {

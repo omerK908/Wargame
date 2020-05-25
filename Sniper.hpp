@@ -22,5 +22,6 @@ public:
     }
     void heal() override
     {
+        _hp = S_HP;
     }
 };

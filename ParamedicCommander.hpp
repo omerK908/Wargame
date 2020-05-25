@@ -19,7 +19,7 @@ public:
         
     }
     void heal() override{
-        
+        _hp = PC_HP;
     }
 
 };
