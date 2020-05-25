@@ -7,6 +7,8 @@
  * @author Erel Segal-Halevi
  * @since  2020-05
  */
+#ifndef uint
+#define uint unsigned int
 
 #include <string>
 #include <vector>
@@ -67,3 +69,4 @@ class Board {
 };
 
 }
+#endif
