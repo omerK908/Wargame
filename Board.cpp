@@ -43,7 +43,25 @@ namespace WarGame
             switch (direction)
             {
             case Up:
-                if (isEmpty({row + 1, col}))
+                if (isEmpty({row, col + 1}))
+                {
+                    board[row][col] = nullptr;
+                    board[row][col+1] = temp;
+                    attack({row, col+1}, temp);
+                }
+
+                break;
+            case Down:
+                if (isEmpty({row, col-1}))
+                {
+                    board[row][col] = nullptr;
+                    board[row][col-1] = temp;
+                    attack({row, col-1}, temp);
+                }
+
+                break;
+            case Right:
+                if (isEmpty({row+1, col}))
                 {
                     board[row][col] = nullptr;
                     board[row + 1][col] = temp;
@@ -51,30 +69,12 @@ namespace WarGame
                 }
 
                 break;
-            case Down:
+            case Left:
                 if (isEmpty({row - 1, col}))
                 {
                     board[row][col] = nullptr;
                     board[row - 1][col] = temp;
                     attack({row - 1, col}, temp);
-                }
-
-                break;
-            case Right:
-                if (isEmpty({row, col + 1}))
-                {
-                    board[row][col] = nullptr;
-                    board[row][col + 1] = temp;
-                    attack({row, col + 1}, temp);
-                }
-
-                break;
-            case Left:
-                if (isEmpty({row, col - 1}))
-                {
-                    board[row][col] = nullptr;
-                    board[row][col - 1] = temp;
-                    attack({row, col - 1}, temp);
                 }
 
                 break;
