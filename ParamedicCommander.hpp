@@ -10,7 +10,7 @@
 
 class ParamedicCommander : public Soldier{
 public:
-    ParamedicCommander(int team):Soldier(PC_HP, PC_DPA, team, true){};
+    ParamedicCommander(int team):Soldier(PC_HP, PC_DPA, team, true, Soldier::Paramedic){};
     ~ParamedicCommander(){};
     void attack(std::vector<std::vector<Soldier*>> &board, std::pair<int,int> source) override{
         

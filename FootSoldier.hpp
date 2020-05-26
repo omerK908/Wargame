@@ -12,8 +12,8 @@
 class FootSoldier : public Soldier
 {
 public:
-    FootSoldier(int team) : Soldier(FS_HP, FS_DPA, team, false){};
-    FootSoldier(int hp, int dpa, int team, bool isCommander) : Soldier(hp, dpa, team, isCommander) {}
+    FootSoldier(int team) : Soldier(FS_HP, FS_DPA, team, false, Soldier::FootSoldier){};
+    FootSoldier(int hp, int dpa, int team, bool isCommander, Type type) : Soldier(hp, dpa, team, isCommander, type) {}
     ~FootSoldier(){};
     void attack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
@@ -38,8 +38,23 @@ public:
     }
     void specialAttack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
-        std::cout << "--->Foot Soldier Attack<---" << std::endl;
+        if (!_isCommander) std::cout << "--->Foot Soldier Attack<---" << std::endl;
         attack(board, source);
+
+        if (_isCommander)
+        {
+            std::cout << "--->FootCommander Attack<--- " << std::endl;
+            for (int i = 0; i < board.size(); i++)
+            {
+                std::vector<Soldier *> a = board[i];
+                for (int j = 0; j < a.size(); j++)
+                {
+                    Soldier *s = a[j];
+                    if (s != NULL && s->_team == _team && !s->_isCommander)
+                        s->specialAttack(board, source);
+                }
+            }
+        }
     }
     void heal() override
     {

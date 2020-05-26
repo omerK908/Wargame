@@ -10,7 +10,7 @@
 
 class Paramedic : public Soldier{
 public:
-    Paramedic(int team):Soldier(P_HP, P_DPA, team, false){};
+    Paramedic(int team):Soldier(P_HP, P_DPA, team, false, Soldier::Paramedic){};
     ~Paramedic(){};
     void attack(std::vector<std::vector<Soldier*>> &board, std::pair<int,int> source) override{
         
@@ -19,7 +19,7 @@ public:
         
     }
     void heal() override{
-        _hp = S_HP;
+        _hp = P_HP;
     }
 
 };

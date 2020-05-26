@@ -3,15 +3,15 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
-#include "Soldier.hpp"
+#include "FootSoldier.hpp"
 
 #define SC_HP 120
 #define SC_DPA 100
 
-class SniperCommander : public Soldier
+class SniperCommander : public FootSoldier
 {
 public:
-    SniperCommander(int team) : Soldier(SC_HP, SC_DPA, team, true){};
+    SniperCommander(int team) : FootSoldier(SC_HP, SC_DPA, team, true, Soldier::Sniper){};
     ~SniperCommander(){};
 
     void specialAttack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
