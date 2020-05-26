@@ -50,8 +50,8 @@ public:
                 for (int j = 0; j < a.size(); j++)
                 {
                     Soldier *s = a[j];
-                    if (s != NULL && s->_team == _team && !s->_isCommander)
-                        s->specialAttack(board, source);
+                    if (s != NULL && s->_team == _team && !s->_isCommander && s->_type == _type)
+                        s->specialAttack(board, {i, j});
                 }
             }
         }
@@ -87,13 +87,12 @@ public:
     }
     double distanceFunc(std::pair<int, int> source, std::pair<int, int> end)
     {
-
         int x1, x2, y1, y2;
         x1 = source.first;
         x2 = end.first;
         y1 = source.second;
         y2 = end.second;
         return sqrt(pow(x2 - x1, 2) +
-                    pow(y2 - y1, 2) * 1.0);
+                    pow(y2 - y1, 2));
     }
 };
