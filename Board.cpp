@@ -42,7 +42,7 @@ namespace WarGame
 
             switch (direction)
             {
-            case Up:
+            case Right://to be fixed?
                 if (isEmpty({row, col + 1}))
                 {
                     board[row][col] = nullptr;
@@ -51,7 +51,7 @@ namespace WarGame
                 }
 
                 break;
-            case Down:
+            case Left://to be fixed?
                 if (isEmpty({row, col-1}))
                 {
                     board[row][col] = nullptr;
@@ -60,7 +60,7 @@ namespace WarGame
                 }
 
                 break;
-            case Right:
+            case Up://to be fixed?
                 if (isEmpty({row+1, col}))
                 {
                     board[row][col] = nullptr;
@@ -69,7 +69,7 @@ namespace WarGame
                 }
 
                 break;
-            case Left:
+            case Down://to be fixed?
                 if (isEmpty({row - 1, col}))
                 {
                     board[row][col] = nullptr;
@@ -85,12 +85,11 @@ namespace WarGame
         }
         else
         {
-            throw std::invalid_argument("place is not belong to you");
+            throw std::invalid_argument("place is taken");
         }
     }
     bool Board::has_soldiers(uint player_number) const
     {
-
         for (int i = 0; i < board.size(); i++)
         {
             vector<Soldier *> a = board[i];

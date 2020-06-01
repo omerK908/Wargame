@@ -38,7 +38,19 @@ public:
     void specialAttack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
         attack(board, source);
-        //need extra staff
+        if(_isCommander){
+            std::cout << "--->SniperCommander Attack<--- " << std::endl;
+            for (int i = 0; i < board.size(); i++)
+            {
+                std::vector<Soldier *> a = board[i];
+                for (int j = 0; j < a.size(); j++)
+                {
+                    Soldier *s = a[j];
+                    if (s != NULL && s->_team == _team && !s->_isCommander && s->_type == _type)
+                        s->specialAttack(board, {i, j});
+                }
+            }
+        }
     }
     void heal() override
     {
