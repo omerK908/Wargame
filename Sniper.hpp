@@ -7,7 +7,7 @@
 
 #define S_HP 100
 #define S_DPA 50
-#define HUGE_NUMBER 1000
+//#define HUGE_NUMBER 1000
 
 class Sniper : public FootSoldier
 {
@@ -17,10 +17,11 @@ public:
     ~Sniper(){};
     void attack(std::vector<std::vector<Soldier *>> &board, std::pair<int, int> source) override
     {
-        std::cout << "--->Sniper Attack<--- " << std::endl;
+        //std::cout << "--->Sniper Attack<--- " << std::endl;
         std::pair<int, int> enemyPos = strongestEnemyPos(board);
+        //std::cout << "enemyPos " << enemyPos.first << " " << enemyPos.second << std::endl;
         if(enemyPos.first < 0 || enemyPos.second < 0){
-            std::cout << "Didnt find strongest enemy, Sniper::attack\n";
+            //std::cout << "Didnt find strongest enemy, Sniper::attack\n";
             return;
         }
         Soldier* enemy = board[enemyPos.first][enemyPos.second];
@@ -30,7 +31,7 @@ public:
             if(enemy->_hp <=0){
                 delete enemy;
                 board[enemyPos.first][enemyPos.second] = nullptr;
-                std::cout << " ---RIP---" << std::endl;
+                //std::cout << " ---RIP---" << std::endl;
             }
         }
     }
@@ -39,7 +40,7 @@ public:
     {
         attack(board, source);
         if(_isCommander){
-            std::cout << "--->SniperCommander Attack<--- " << std::endl;
+            //std::cout << "--->SniperCommander Attack<---______ " << std::endl;
             for (int i = 0; i < board.size(); i++)
             {
                 std::vector<Soldier *> a = board[i];
@@ -59,21 +60,19 @@ public:
 
     std::pair<int, int> strongestEnemyPos(std::vector<std::vector<Soldier *>> &board)
     {
+        //std::cout << "___________Find strongest enemy func__________\n";
         Soldier *tmp = nullptr;
+        int enemyHp = 0;
         std::pair<int, int> ans = {-1, -1};
         
         for (int i = 0; i < board.size(); i++)
         {
-            std::vector<Soldier *> a = board[i];
-            for (int j = 0; j < a.size(); j++)
+            for (int j = 0; j < board[i].size(); j++)
             {
-                Soldier *s = a[j];
-                if (s != nullptr && s->_team != _team){
-                    if(tmp == nullptr){tmp = s;}
-                    else if(s->_hp > tmp->_hp){
-                        tmp = s;
-                        ans = {i, j};
-                    }
+                Soldier *s = board[i][j];
+                if (s != nullptr && s->_team != _team && s->_hp > enemyHp){
+                    enemyHp = s->_hp;
+                    ans.first = i; ans.second = j;
                 }
 
             }

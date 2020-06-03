@@ -31,10 +31,10 @@ namespace WarGame
             throw std::invalid_argument("Place is empty");
         }
 
-        std::cout << "   "
-                  << "Team: " << temp->_team << " "
-                  << "Commander: " << temp->_isCommander << std::endl;
-        std::cout << "**----------------------**" << std::endl;
+        // std::cout << "   "
+        //           << "Team: " << temp->_team << " "
+        //           << "Commander: " << temp->_isCommander << std::endl;
+        // std::cout << "**----------------------**" << std::endl;
 
         if (temp != nullptr && temp->_team == player_number)
         {

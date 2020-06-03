@@ -14,7 +14,7 @@ public:
     Paramedic(int hp, int dpa, int team, bool isCommander, Type type) : FootSoldier(hp, dpa, team, isCommander, type) {}
     ~Paramedic(){};
     void attack(std::vector<std::vector<Soldier*>> &board, std::pair<int,int> source) override{
-        std::cout << "Paramedic heal\n";
+        //std::cout << "Paramedic heal\n";
         
         int i = source.first;
         int j = source.second;
@@ -63,7 +63,7 @@ public:
         attack(board, source);
         
         if(_isCommander){
-            std::cout << "Paramedic Commander heal\n";
+            //std::cout << "Paramedic Commander heal\n";
             for (int i = 0; i < board.size(); i++)
             {
                 std::vector<Soldier *> a = board[i];
